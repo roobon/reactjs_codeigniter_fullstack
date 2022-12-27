@@ -1,0 +1,25 @@
+01. Create project:--composer create-project codeigniter4/appstarter fullstack_project
+02. Create Database:--fullstack_project
+03. Database Connection with env file and environment setup
+04. Run this project:--php spark serve
+05. Create Controller:--php spark make:controller dashboard
+06. go to Routes.php  
+	change Default Controller "Dashboard",
+	setAutoRoute(true) then route Dashboard
+	Check Route list: php spark routes
+07. dist, plugins folder from adminLTE copied to public/assets folder
+08. copied all codes from index.html to admin_home.php and updated all paths (img, css, js)
+09. templating for dashboard.php
+10. Migration for Products:--php spark make:migration products
+11. Model for ProdectModel:--php spark make:model ProductModel
+	update allowed fields
+
+12. Controller for Products:--php spark make:controller products --restful
+13. Create table:--php spark migrate
+	Drop and recreate all tables:--php spark migrate:refresh
+	Table status checking:--php spark migrate:status
+	Rollback or delete all tables:--php spark migrate:rollback
+14. ProductModel import to Product controller
+15. Demo Data entry
+	generate new seeder file:php spark make:seeder ProductsSeeder
+	Data insert with seed command:-- php spark db:seed ProductsSeeder

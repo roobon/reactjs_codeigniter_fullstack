@@ -12,6 +12,11 @@ class Products extends ResourceController
      *
      * @return mixed
      */
+    function __construct()
+    {
+        helper(['form', 'url']);
+    }
+
     public function index()
     {
         $model = new ProductModel();
@@ -38,7 +43,7 @@ class Products extends ResourceController
      */
     public function new()
     {
-        //
+        return view("products/product_entry");
     }
 
     /**
@@ -48,7 +53,20 @@ class Products extends ResourceController
      */
     public function create()
     {
-        //
+        $validate =  $this->validate([
+            'product_name' => 'required|min_length[5]|max_length[20]',
+            'product_details' => 'min_length[10]',
+            'product_price' => 'required|numeric'
+        ]);
+
+        if (!$validate) {
+            return view("products/product_entry", ['validation' => $this->validator]);
+        } else {
+            $model =  new ProductModel();
+            $data = $this->request->getPost();
+            $model->save($data);
+            return redirect()->to('products');
+        }
     }
 
     /**
