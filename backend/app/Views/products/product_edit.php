@@ -15,7 +15,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Product Entry System</h1>
+                    <h1>Product Edit System</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -26,11 +26,7 @@
             </div>
         </div><!-- /.container-fluid -->
     </section>
-    <?php
-    if (session()->has('errors')) {
-        $errors = session()->errors;
-    }
-    ?>
+
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
@@ -40,49 +36,54 @@
                     <!-- general form elements -->
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Product Entry Form</h3>
+                            <h3 class="card-title">Product Edit Form</h3>
+
                         </div>
+                        <?php
+                        $errors = [];
+                        if (session()->has('errors')) {
+                            $errors = session()->errors;
+                        }
+                        ?>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form method="post" action="<?= base_url('products/create') ?>">
+                        <form method="post" action="<?= base_url('products/update/' . $product['id']) ?>">
                             <div class="card-body">
+
+
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Product Name</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Product name" name="product_name" value="<?php echo old('product_name') ?>">
+                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Product name" name="product_name" value="<?= old('product_name') ? old('product_name') : $product['product_name'] ?>">
                                     <span class="text-danger">
-                                        <?php
-
-                                        if (isset($errors['product_name'])) {
-                                            echo $errors['product_name'];
-                                        }
-                                        ?></span>
+                                        <?=
+                                        isset($errors['product_name']) ?  $errors['product_name'] : '';
+                                        ?>
+                                    </span>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Product Details</label>
-                                    <textarea class="form-control" id="summernote" name="product_details"><?php echo old('product_details') ?></textarea>
+                                    <textarea class="form-control" id="summernote" name="product_details"><?= old('product_details') ? old('product_details') : $product['product_details'] ?></textarea>
                                     <span class="text-danger">
-                                        <?php
-                                        if (isset($errors['product_details'])) {
-                                            echo $errors['product_details'];
-                                        }
-                                        ?></span>
+                                        <?=
+                                        isset($errors['product_details']) ?  $errors['product_details'] : '';
+                                        ?>
+                                    </span>
 
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputFile">Price</label>
-                                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter Price" name="product_price" value="<?php echo old('product_price') ?>">
+                                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter Price" name="product_price" value="<?= old('product_price') ? old('product_price') : $product['product_price'] ?>">
                                     <span class="text-danger">
-                                        <?php
-                                        if (isset($errors['product_price'])) {
-                                            echo $errors['product_price'];
-                                        }
-                                        ?></span>
+                                        <?=
+                                        isset($errors['product_price']) ?  $errors['product_price'] : '';
+                                        ?>
+                                    </span>
                                 </div>
                             </div>
                             <!-- /.card-body -->
 
                             <div class=" card-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary">UPDATE</button>
                             </div>
                         </form>
                     </div>

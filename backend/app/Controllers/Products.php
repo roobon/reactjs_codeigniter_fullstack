@@ -53,14 +53,32 @@ class Products extends ResourceController
      */
     public function create()
     {
-        $validate =  $this->validate([
+        $rules = [
             'product_name' => 'required|min_length[5]|max_length[20]',
             'product_details' => 'min_length[10]',
             'product_price' => 'required|numeric'
-        ]);
+        ];
+        $errors =
+            [
+                'product_name' => [
+                    'required' => 'Product Name must be fill',
+                    'min_length' => 'Minimum length 5',
+                    'max_length' => 'Product Name must be fill',
+                ],
+                'product_details' => [
+                    'required' => 'Product Name must be fill',
+                    'min_length' => 'Minimum length 5',
+                ],
+                'product_price' => [
+                    'required' => 'Product Name must be fill',
+                    'numeric' => 'Number only',
+                ]
+            ];
 
-        if (!$validate) {
-            return view("products/product_entry", ['validation' => $this->validator]);
+
+        echo $validation = $this->validate($rules, $errors);
+        if (!$validation) {
+            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         } else {
             $model =  new ProductModel();
             $data = $this->request->getPost();
@@ -76,7 +94,9 @@ class Products extends ResourceController
      */
     public function edit($id = null)
     {
-        //
+        $model =  new ProductModel();
+        $data['product'] = $model->find($id);
+        return view("products/product_edit", $data);
     }
 
     /**
@@ -86,7 +106,23 @@ class Products extends ResourceController
      */
     public function update($id = null)
     {
-        //
+
+        $validate =  $this->validate([
+            'product_name' => 'required|min_length[5]|max_length[20]',
+            'product_details' => 'min_length[10]',
+            'product_price' => 'required|numeric'
+        ]);
+
+        if (!$validate) {
+            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+        } else {
+            $model =  new ProductModel();
+            $data['product_name'] = $this->request->getPost('product_name');
+            $data['product_details'] = $this->request->getPost('product_details');
+            $data['product_price'] = $this->request->getPost('product_price');
+            $model->update($id, $data);
+            return redirect()->to('products')->with('msg', "Updated Successully");
+        }
     }
 
     /**
