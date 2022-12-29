@@ -47,7 +47,7 @@
                         ?>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form method="post" action="<?= base_url('products/update/' . $product['id']) ?>">
+                        <form method="post" action="<?= base_url('products/update/' . $product['id']) ?>" enctype="multipart/form-data">
                             <div class="card-body">
 
 
@@ -79,6 +79,18 @@
                                         ?>
                                     </span>
                                 </div>
+                                <div class="form-group">
+                                    <label for="exampleInputFile">Product Image</label>
+                                    <input type="file" class="form-control" id="exampleInputPassword1" placeholder="Enter Price" name="product_image" value="<?php echo old('product_image') ?>">
+
+                                    <span class="text-danger">
+                                        <?php
+                                        if (isset($errors['product_image'])) {
+                                            echo $errors['product_image'];
+                                        }
+                                        ?></span>
+                                </div>
+
                             </div>
                             <!-- /.card-body -->
 
@@ -88,6 +100,7 @@
                         </form>
                     </div>
                     <!-- /.card -->
+                    <img src="<?php echo $product['product_image'] ?>" width="200" alt="">
 
 
 

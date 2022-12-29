@@ -50,6 +50,7 @@
                                     <thead>
                                         <tr>
                                             <th>ID</th>
+                                            <th>Photo</th>
                                             <th>Product Name</th>
                                             <th>Details</th>
                                             <th>Price</th>
@@ -60,6 +61,7 @@
                                         <?php foreach ($products as $product) : ?>
                                             <tr>
                                                 <td><?= $product['id']; ?></td>
+                                                <td><img src="<?= $product['product_image']; ?>" alt="">
                                                 <td><?= $product['product_name']; ?>
                                                 </td>
                                                 <td><?= $product['product_details']; ?></td>

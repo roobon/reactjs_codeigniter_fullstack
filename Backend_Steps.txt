@@ -23,3 +23,13 @@
 15. Demo Data entry
 	generate new seeder file:php spark make:seeder ProductsSeeder
 	Data insert with seed command:-- php spark db:seed ProductsSeeder
+
+16. Product image upload
+
+17. Category Table
+
+
+
+
+
+
