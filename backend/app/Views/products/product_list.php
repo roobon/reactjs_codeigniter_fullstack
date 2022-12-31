@@ -61,7 +61,7 @@
                                         <?php foreach ($products as $product) : ?>
                                             <tr>
                                                 <td><?= $product['id']; ?></td>
-                                                <td><img src="<?= $product['product_image']; ?>" alt="">
+                                                <td><img src="<?= $product['product_image']; ?>" width="200" alt="">
                                                 <td><?= $product['product_name']; ?>
                                                 </td>
                                                 <td><?= $product['product_details']; ?></td>

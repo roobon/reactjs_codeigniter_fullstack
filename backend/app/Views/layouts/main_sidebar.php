@@ -127,6 +127,7 @@
                         </li>
 
                     </ul>
+                    <a href="<?= site_url("/users/logout") ?>">Logout</a>
                 </li>
 
 

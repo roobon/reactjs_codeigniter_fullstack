@@ -26,7 +26,7 @@
 
 16. Product image upload
 
-17. Category Table
+17. Category Table(id, cat_name)
 
 
 
