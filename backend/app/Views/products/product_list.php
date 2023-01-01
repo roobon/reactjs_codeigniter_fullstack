@@ -50,23 +50,23 @@
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Photo</th>
-                                            <th>Product Name</th>
-                                            <th>Price</th>
-                                            <th>Action</th>
+                                            <th class="text-center">Photo</th>
+                                            <th class="text-center">Product Name</th>
+                                            <th class="text-center">Product Price</th>
+                                            <th class="text-center">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php foreach ($products as $product) : ?>
                                             <tr>
                                                 <td><?= $product['id']; ?></td>
-                                                <td><img src="<?= site_url() . $product['product_image']; ?>" width="150" height="100" alt="">
+                                                <td class="text-center"><img src="<?= site_url() . $product['product_image']; ?>" width="150" height="100" alt="">
                                                 <td><?= $product['product_name']; ?>
                                                 </td>
-                                                <td><?= $product['product_price']; ?></td>
+                                                <td class="text-right"><?= $product['product_price']; ?></td>
                                                 <td class="text-center">
                                                     <a href="<?= site_url("products/edit/" . $product['id']) ?>" class="btn btn-info">Edit</a>
-                                                    <a href="" class="btn btn-danger">Delete</a>
+                                                    <a href="" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete?')">Delete</a>
                                                     <a href="" class="btn btn-primary">Show</a>
                                                 </td>
                                             </tr>
@@ -75,11 +75,10 @@
                                     <tfoot>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Photo</th>
-                                            <th>Product Name</th>
-                                            <th>Details</th>
-                                            <th>Price</th>
-                                            <th>Action</th>
+                                            <th class="text-center">Photo</th>
+                                            <th class="text-center">Product Name</th>
+                                            <th class="text-center">Price</th>
+                                            <th class="text-center">Action</th>
                                         </tr>
                                     </tfoot>
                                 </table>

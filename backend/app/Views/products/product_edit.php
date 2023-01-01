@@ -90,6 +90,7 @@
                                         }
                                         ?></span>
                                 </div>
+                                <img src="<?= site_url() . $product['product_image'] ?>" width="200" alt="">
 
                             </div>
                             <!-- /.card-body -->
@@ -100,7 +101,7 @@
                         </form>
                     </div>
                     <!-- /.card -->
-                    <img src="<?php echo $product['product_image'] ?>" width="200" alt="">
+
 
 
 
