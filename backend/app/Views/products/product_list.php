@@ -52,7 +52,6 @@
                                             <th>ID</th>
                                             <th>Photo</th>
                                             <th>Product Name</th>
-                                            <th>Details</th>
                                             <th>Price</th>
                                             <th>Action</th>
                                         </tr>
@@ -61,14 +60,14 @@
                                         <?php foreach ($products as $product) : ?>
                                             <tr>
                                                 <td><?= $product['id']; ?></td>
-                                                <td><img src="<?= base_url() . $product['product_image']; ?>" width="200" alt="">
+                                                <td><img src="<?= site_url() . $product['product_image']; ?>" width="150" height="100" alt="">
                                                 <td><?= $product['product_name']; ?>
                                                 </td>
-                                                <td><?= $product['product_details']; ?></td>
                                                 <td><?= $product['product_price']; ?></td>
-                                                <td>
-                                                    <a href="<?= site_url("products/edit/" . $product['id']) ?>" class="mx-2"><i class="fa fa-pen"></i></a>
-                                                    <a href=""><i class="fa fa-trash"></i></a>
+                                                <td class="text-center">
+                                                    <a href="<?= site_url("products/edit/" . $product['id']) ?>" class="btn btn-info">Edit</a>
+                                                    <a href="" class="btn btn-danger">Delete</a>
+                                                    <a href="" class="btn btn-primary">Show</a>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
@@ -76,6 +75,7 @@
                                     <tfoot>
                                         <tr>
                                             <th>ID</th>
+                                            <th>Photo</th>
                                             <th>Product Name</th>
                                             <th>Details</th>
                                             <th>Price</th>
