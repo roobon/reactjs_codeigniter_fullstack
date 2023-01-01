@@ -14,7 +14,7 @@ const ProductList = () => {
     const products = await axios.get("http://localhost:8080/products");
     setProducts(products.data.products);
   };
-
+  const http = "http://localhost:8080/";
   const deleteProduct = async (id) => {
     await axios.delete(`http://localhost:8080/products/${id}`);
     getProducts();
@@ -40,8 +40,7 @@ const ProductList = () => {
             <tr key={product.id}>
               <td>{index + 1}</td>
               <td>
-                <img src="http://localhost:8080/${product.product_image}" />
-                {product.product_image}
+                <img src={http + product.product_image} />
               </td>
               <td>{product.product_name}</td>
               <td>{product.product_price}</td>
