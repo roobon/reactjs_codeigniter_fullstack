@@ -28,8 +28,9 @@ const ProductList = () => {
       <table className="table is-striped is-fullwidth">
         <thead>
           <tr>
-            <th>No</th>
-            <th>Title</th>
+            <th>SN</th>
+            <th>Product Image</th>
+            <th>Product Name</th>
             <th>Price</th>
             <th>Actions</th>
           </tr>
@@ -38,6 +39,10 @@ const ProductList = () => {
           {products.map((product, index) => (
             <tr key={product.id}>
               <td>{index + 1}</td>
+              <td>
+                <img src="http://localhost:8080/${product.product_image}" />
+                {product.product_image}
+              </td>
               <td>{product.product_name}</td>
               <td>{product.product_price}</td>
               <td>
