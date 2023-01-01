@@ -23,8 +23,9 @@ class Products extends ResourceController
     {
         $model = new ProductModel();
         $data['products'] = $model->orderBy('id', 'DESC')->findAll();
-        //return view("products/product_list", $data);
-        return $this->respond($data);
+        //echo $this->respond($data);
+        return view("products/product_list", $data);
+
         //print_r($data);
     }
 
