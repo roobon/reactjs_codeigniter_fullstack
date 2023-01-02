@@ -1,4 +1,5 @@
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+
     <!-- Left navbar links -->
     <ul class="navbar-nav">
         <li class="nav-item">
@@ -11,7 +12,7 @@
             <a href="#" class="nav-link">Contact</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="<?= site_url("/users/logout") ?>" class="nav-link">Logout</a>
+            <a href="<?= site_url("/users/logout") ?>" class="nav-link">Logout &nbsp;&nbsp; <b><?= session()->get('name'); ?></b></a>
         </li>
     </ul>
 

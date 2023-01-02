@@ -5,7 +5,6 @@ namespace App\Controllers;
 use App\Models\Category;
 use CodeIgniter\RESTful\ResourceController;
 use App\Models\ProductModel;
-use CodeIgniter\API\ResponseTrait;
 
 class Products extends ResourceController
 {
@@ -18,15 +17,12 @@ class Products extends ResourceController
     {
         helper(['form', 'url']);
     }
-    use ResponseTrait;
+
     public function index()
     {
         $model = new ProductModel();
         $data['products'] = $model->orderBy('id', 'DESC')->findAll();
-        //return $this->respond($data);
         return view("products/product_list", $data);
-
-        //print_r($data);
     }
 
     /**
@@ -58,57 +54,100 @@ class Products extends ResourceController
      */
     public function create()
     {
-        $rules = [
-            'product_name' => 'required|min_length[3]|max_length[50]',
-            'product_details' => 'min_length[3]',
-            'product_price' => 'required|numeric',
-            'product_image' => [
-                'uploaded[product_image]',
-                'mime_in[product_image, image/jpg,image/jpeg,image/png]',
-                'max_size[product_image, 1024]',
-            ]
-        ];
-        $errors =
-            [
-                'product_name' => [
-                    'required' => 'Product Name must be fill',
-                    'min_length' => 'Minimum length 3',
-                    'max_length' => 'Product Name must be fill',
-                ],
-                'product_details' => [
-                    'required' => 'Product Name must be fill',
-                    'min_length' => 'Minimum length 3',
-                ],
-                'product_price' => [
-                    'required' => 'Product Name must be fill',
-                    'numeric' => 'Number only',
-                ],
+
+        if ($this->request->getFile('product_image')) {
+
+            $rules = [
+                'product_name' => 'required|min_length[3]|max_length[50]',
+                'product_details' => 'min_length[3]',
+                'product_price' => 'required|numeric',
                 'product_image' => [
-                    'mime_in' => 'Only jpg, png and jpeg are allowed',
-                    'max_size' => 'Not more than 1MB',
+                    //'uploaded[product_image]',
+                    'mime_in[product_image, image/jpg,image/jpeg,image/png]',
+                    'max_size[product_image, 1024]',
                 ]
             ];
 
-        $validation = $this->validate($rules, $errors);
-        if (!$validation) {
-            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+            $errors =
+                [
+                    'product_name' => [
+                        'required' => 'Product Name must be fill',
+                        'min_length' => 'Minimum length 3',
+                        'max_length' => 'Product Name must be fill',
+                    ],
+                    'product_details' => [
+                        'required' => 'Product Name must be fill',
+                        'min_length' => 'Minimum length 3',
+                    ],
+                    'product_price' => [
+                        'required' => 'Product Name must be fill',
+                        'numeric' => 'Number only',
+                    ],
+                    'product_image' => [
+                        'mime_in' => 'Only jpg, png and jpeg are allowed',
+                        'max_size' => 'Not more than 1MB',
+                    ]
+                ];
+
+            $validation = $this->validate($rules, $errors);
+            if (!$validation) {
+                return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+            } else {
+                $img = $this->request->getFile('product_image');
+
+                $data['product_name']  = $this->request->getPost('product_name');
+                $data['product_details']  = $this->request->getPost('product_details');
+                $data['product_price']  = $this->request->getPost('product_price');
+                $data['product_category']  = $this->request->getPost('cat_name');
+
+                $path = "assets/uploads/";
+                $result = $img->move($path);
+                $namepath = $path . $img->getName();
+                $data['product_image'] =  $namepath;
+                $model =  new ProductModel();
+                $model->save($data);
+
+                return redirect()->to('products');
+            }
         } else {
-            $img = $this->request->getFile('product_image');
-            $path = "assets/uploads/";
-            $result = $img->move($path);
+            $rules = [
+                'product_name' => 'required|min_length[3]|max_length[50]',
+                'product_details' => 'min_length[3]',
+                'product_price' => 'required|numeric',
+            ];
 
-            //print_r($result);
+            $errors =
+                [
+                    'product_name' => [
+                        'required' => 'Product Name must be fill',
+                        'min_length' => 'Minimum length 3',
+                        'max_length' => 'Product Name must be fill',
+                    ],
+                    'product_details' => [
+                        'required' => 'Product Name must be fill',
+                        'min_length' => 'Minimum length 3',
+                    ],
+                    'product_price' => [
+                        'required' => 'Product Name must be fill',
+                        'numeric' => 'Number only',
+                    ]
+                ];
 
-            $data['product_name']  = $this->request->getPost('product_name');
-            $data['product_details']  = $this->request->getPost('product_details');
-            $data['product_price']  = $this->request->getPost('product_price');
-            $namepath = $path . $img->getName();
-            $data['product_image'] =  $namepath;
-            $data['product_category']  = $this->request->getPost('cat_name');
+            $validation = $this->validate($rules, $errors);
+            if (!$validation) {
+                return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+            } else {
 
-            $model =  new ProductModel();
-            $model->save($data);
-            return redirect()->to('products');
+                $data['product_name']  = $this->request->getPost('product_name');
+                $data['product_details']  = $this->request->getPost('product_details');
+                $data['product_price']  = $this->request->getPost('product_price');
+                $data['product_category']  = $this->request->getPost('cat_name');
+
+                $model =  new ProductModel();
+                $model->save($data);
+
+                return redirect()->to('products');
+            }
         }
     }
 
@@ -190,6 +229,8 @@ class Products extends ResourceController
      */
     public function delete($id = null)
     {
-        //
+        $model =  new ProductModel();
+        $model->delete($id);
+        return redirect()->to('products')->with('msg', "Deleted Successully");
     }
 }

@@ -11,12 +11,12 @@ const ProductList = () => {
   }, []);
 
   const getProducts = async () => {
-    const products = await axios.get("http://localhost:8080/products");
-    setProducts(products.data.products);
+    const products = await axios.get("http://localhost:8080/frontend/products");
+    setProducts(products.data);
   };
   const http = "http://localhost:8080/";
   const deleteProduct = async (id) => {
-    await axios.delete(`http://localhost:8080/products/${id}`);
+    await axios.delete(`http://localhost:8080/frontend/products/${id}`);
     getProducts();
   };
   console.log(products);

@@ -66,7 +66,7 @@
                                                 <td class="text-right"><?= $product['product_price']; ?></td>
                                                 <td class="text-center">
                                                     <a href="<?= site_url("products/edit/" . $product['id']) ?>" class="btn btn-info">Edit</a>
-                                                    <a href="<?= site_url("products/delete/" . $product['id']) ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete?')">Delete</a>
+                                                    <a href="" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete?')">Delete</a>
                                                     <a href="" class="btn btn-primary">Show</a>
                                                 </td>
                                             </tr>

@@ -44,7 +44,7 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form method="post" action="<?php echo site_url('products/create') ?>" enctype="multipart/form-data">
+                        <form method="post" action="<?= base_url('products/create') ?>" enctype="multipart/form-data">
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Product Name</label>
@@ -89,7 +89,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputFile">Product Image</label>
-                                    <input type="file" class="form-control" id="exampleInputPassword1" placeholder="Enter Price" name="product_image">
+                                    <input type="file" class="form-control" id="exampleInputPassword1" placeholder="Enter Price" name="product_image" value="<?php echo old('product_image') ?>">
                                     <span class="text-danger">
                                         <?php
                                         if (isset($errors['product_image'])) {
@@ -101,7 +101,7 @@
                             <!-- /.card-body -->
 
                             <div class=" card-footer">
-                                <input type="submit" class="btn btn-primary" value="SUBMIT" />
+                                <button type="submit" class="btn btn-primary">Submit</button>
                             </div>
                         </form>
                     </div>
