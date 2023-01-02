@@ -18,8 +18,6 @@
                         <?php
                         if (session()->has('msg')) : ?>
                             <div class="alert alert-success"><?= session()->msg; ?></div>
-
-
                         <?php endif; ?>
                     </div><!-- /.col -->
                     <div class="col-sm-6">

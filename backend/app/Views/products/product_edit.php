@@ -61,6 +61,22 @@
                                     </span>
                                 </div>
                                 <div class="form-group">
+                                    <label for="exampleInputEmail1">Product Category</label>
+                                    <select name="cat_name" class="form-control">
+                                        <option value="">Select One</option>
+                                        <?php foreach ($cats as $cat) : ?>
+                                            <option value="<?= $cat['id'] ?>" <?= ($product['product_category'] == $cat['id']) ? "selected" : "" ?>><?= $cat['cat_name'] ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                    <span class="text-danger">
+                                        <?php
+
+                                        if (isset($errors['cat_name'])) {
+                                            echo $errors['cat_name'];
+                                        }
+                                        ?></span>
+                                </div>
+                                <div class="form-group">
                                     <label for="exampleInputPassword1">Product Details</label>
                                     <textarea class="form-control" id="summernote" name="product_details"><?= old('product_details') ? old('product_details') : $product['product_details'] ?></textarea>
                                     <span class="text-danger">
@@ -81,7 +97,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputFile">Product Image</label>
-                                    <input type="file" class="form-control" id="exampleInputPassword1" placeholder="Enter Price" name="product_image" value="<?php echo old('product_image') ?>">
+                                    <input type="file" class="form-control" id="exampleInputPassword1" placeholder="Enter Price" name="product_image">
 
                                     <span class="text-danger">
                                         <?php
