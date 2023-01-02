@@ -31,18 +31,21 @@
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
         </div>
+
+
         <!-- /.content-header -->
 
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
+                <a class="btn btn-primary" href="<?= site_url('products/new') ?>">Add New Product</a>
                 <!-- Small boxes (Stat box) -->
 
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">DataTable with default features</h3>
+                                <h3 class="card-title">Product List</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
