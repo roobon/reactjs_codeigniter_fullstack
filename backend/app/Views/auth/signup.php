@@ -35,6 +35,8 @@
                         <button type="submit" class="btn btn-dark">Signup</button>
                     </div>
                 </form>
+                <br>
+                <div class="text-center"><a href="<?php echo base_url("/users/signin"); ?>">Already a User, need signin</a></div>
             </div>
         </div>
     </div>

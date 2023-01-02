@@ -42,7 +42,7 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">DataTable with default features</h3>
+                                <h3 class="card-title">Category List</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
@@ -50,22 +50,19 @@
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th class="text-center">Photo</th>
-                                            <th class="text-center">Product Name</th>
-                                            <th class="text-center">Product Price</th>
+
+                                            <th class="text-center">Category Name</th>
                                             <th class="text-center">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach ($products as $product) : ?>
+                                        <?php foreach ($cats as $cat) : ?>
                                             <tr>
-                                                <td><?= $product['id']; ?></td>
-                                                <td class="text-center"><img src="<?= site_url() . $product['product_image']; ?>" width="150" height="100" alt="">
-                                                <td><?= $product['product_name']; ?>
-                                                </td>
-                                                <td class="text-right"><?= $product['product_price']; ?></td>
+                                                <td><?= $cat['id']; ?></td>
+
+                                                <td class="text-right"><?= $cat['cat_name']; ?></td>
                                                 <td class="text-center">
-                                                    <a href="<?= site_url("products/edit/" . $product['id']) ?>" class="btn btn-info">Edit</a>
+                                                    <a href="<?= site_url("products/edit/" . $cat['id']) ?>" class="btn btn-info">Edit</a>
                                                     <a href="" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete?')">Delete</a>
                                                     <a href="" class="btn btn-primary">Show</a>
                                                 </td>
@@ -75,9 +72,7 @@
                                     <tfoot>
                                         <tr>
                                             <th>ID</th>
-                                            <th class="text-center">Photo</th>
-                                            <th class="text-center">Product Name</th>
-                                            <th class="text-center">Price</th>
+                                            <th class="text-center">Category Name</th>
                                             <th class="text-center">Action</th>
                                         </tr>
                                     </tfoot>

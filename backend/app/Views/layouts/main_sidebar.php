@@ -72,13 +72,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?= base_url('products')  ?>" class="nav-link">
+                            <a href="<?= base_url('admin/category')  ?>" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>All Categories</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?= base_url('products/new')  ?>" class="nav-link">
+                            <a href="<?= base_url('category/new')  ?>" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>New Category</p>
                             </a>

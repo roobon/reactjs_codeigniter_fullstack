@@ -38,6 +38,12 @@ $routes->setAutoRoute(true);
 
 $routes->get('/admin', 'Dashboard::index', ['filter' => 'authGuard']);
 $routes->resource('Products');
+$routes->get('/admin/category', 'CategoryController::index', ['filter' => 'authGuard']);
+$routes->get('/admin/category/new', 'Dashboard::new', ['filter' => 'authGuard']);
+$routes->get('/admin/category/create', 'Dashboard::create', ['filter' => 'authGuard']);
+$routes->get('/admin/category/edit/:$1', 'Dashboard::edit', ['filter' => 'authGuard']);
+$routes->get('/admin/category/update/:$1', 'Dashboard::update', ['filter' => 'authGuard']);
+$routes->get('/admin/category/delete/:$1', 'Dashboard::delete', ['filter' => 'authGuard']);
 
 $routes->get('/users/signup', 'SignupController::index');
 $routes->post('/users/store', 'SignupController::store');

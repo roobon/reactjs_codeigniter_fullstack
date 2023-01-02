@@ -32,6 +32,8 @@
                         <button type="submit" class="btn btn-success">Signin</button>
                     </div>
                 </form>
+                <br>
+                <div class="text-center"><a href="<?php echo base_url("/users/signup"); ?>">New User, need signup</a></div>
             </div>
 
         </div>
