@@ -54,15 +54,15 @@ class Products extends ResourceController
      */
     public function create()
     {
-
-        if ($this->request->getFile('product_image')) {
+        $file = $this->request->getFile('product_image');
+        if ($file->isValid()) {
 
             $rules = [
                 'product_name' => 'required|min_length[3]|max_length[50]',
                 'product_details' => 'min_length[3]',
                 'product_price' => 'required|numeric',
                 'product_image' => [
-                    //'uploaded[product_image]',
+                    'uploaded[product_image]',
                     'mime_in[product_image, image/jpg,image/jpeg,image/png]',
                     'max_size[product_image, 1024]',
                 ]
@@ -94,14 +94,13 @@ class Products extends ResourceController
                 return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
             } else {
                 $img = $this->request->getFile('product_image');
-
                 $data['product_name']  = $this->request->getPost('product_name');
                 $data['product_details']  = $this->request->getPost('product_details');
                 $data['product_price']  = $this->request->getPost('product_price');
                 $data['product_category']  = $this->request->getPost('cat_name');
 
                 $path = "assets/uploads/";
-                $result = $img->move($path);
+                $img->move($path);
                 $namepath = $path . $img->getName();
                 $data['product_image'] =  $namepath;
                 $model =  new ProductModel();
@@ -110,13 +109,13 @@ class Products extends ResourceController
                 return redirect()->to('products');
             }
         } else {
-            $rules = [
+            $rules2 = [
                 'product_name' => 'required|min_length[3]|max_length[50]',
                 'product_details' => 'min_length[3]',
                 'product_price' => 'required|numeric',
             ];
 
-            $errors =
+            $errors2 =
                 [
                     'product_name' => [
                         'required' => 'Product Name must be fill',
@@ -133,8 +132,8 @@ class Products extends ResourceController
                     ]
                 ];
 
-            $validation = $this->validate($rules, $errors);
-            if (!$validation) {
+            $validation2 = $this->validate($rules2, $errors2);
+            if (!$validation2) {
                 return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
             } else {
 
@@ -142,6 +141,7 @@ class Products extends ResourceController
                 $data['product_details']  = $this->request->getPost('product_details');
                 $data['product_price']  = $this->request->getPost('product_price');
                 $data['product_category']  = $this->request->getPost('cat_name');
+                $data['product_image'] =  'assets/images/nophoto.jpg';
 
                 $model =  new ProductModel();
                 $model->save($data);
