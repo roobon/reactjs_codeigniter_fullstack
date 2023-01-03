@@ -45,6 +45,8 @@ $routes->get('/admin/category/edit/:$1', 'Dashboard::edit', ['filter' => 'authGu
 $routes->get('/admin/category/update/:$1', 'Dashboard::update', ['filter' => 'authGuard']);
 $routes->get('/admin/category/delete/:$1', 'Dashboard::delete', ['filter' => 'authGuard']);
 
+$routes->get('/qb', 'Qb::index');
+
 $routes->get('/users/signup', 'SignupController::index');
 $routes->post('/users/store', 'SignupController::store');
 $routes->get('/users/signin', 'SigninController::index');
