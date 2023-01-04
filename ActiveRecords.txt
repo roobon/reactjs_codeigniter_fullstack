@@ -1,0 +1,29 @@
+Query Builder
+####From employees table
+1. firstName, lastName, email those jobTitle are sales Rep
+2. firstName, lastName, email those jobTitle are sales Rep and reportsTo 1143
+3.  
+#### From employees and offices table
+firstName, lastName, email, city, country those are from USA
+4.  
+#### From orders, customers
+customerName, phone, city, orderNumber, orderDate, status
+5.  
+#### From orders, orderdetails and customers
+customerName, phone, city, orderNumber, orderDate, status, quantityOrdered, priceEach
+6.  
+#### From orders, orderdetails, customers, products
+SELECT customerName, city, orders.orderNumber, orderDate, products.productCode, productName, sum(quantityOrdered) as TotalOrders, sum(priceEach), MSRP
+from orders, orderdetails, customers, products where 
+orders.orderNumber = orderdetails.orderNumber AND
+products.productCode = orderdetails.productCode AND
+orders.customerNumber =  customers.customerNumber 
+GROUP BY orders.orderNumber
+
+
+7. Country wise order success summary
+8. Customer wise order success summary
+9. Sales reprensentative wise order success report
+10. Order success rate city wise
+11. Monthy order numbers
+
