@@ -27,3 +27,6 @@ GROUP BY orders.orderNumber
 10. Order success rate city wise
 11. Monthy order numbers
 
+
+??? Pagination,  presenter problem ( group routing), Flash data (javascript package/php), query builder more 10, codeIgniter deployment,  User Role system
+
