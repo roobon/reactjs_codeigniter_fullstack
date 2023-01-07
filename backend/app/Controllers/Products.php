@@ -104,7 +104,7 @@ class Products extends ResourceController
                 $data['product_image'] =  $namepath;
                 $model =  new ProductModel();
                 $model->save($data);
-                return redirect()->to('products');
+                return redirect()->to('products')->with('msg', 'Inserted Successfully');
             }
         } else {
             $rules2 = [
@@ -145,7 +145,7 @@ class Products extends ResourceController
 
                 $model =  new ProductModel();
                 $model->save($data);
-                return redirect()->to('products');
+                return redirect()->to('products')->with('msg', 'Inserted Successfully');
             }
         }
     }

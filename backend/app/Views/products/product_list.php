@@ -17,8 +17,18 @@
                         <h1 class="m-0">Dashboard</h1>
                         <?php
                         if (session()->has('msg')) : ?>
-                            <div class="alert alert-success"><?= session()->msg; ?></div>
+                            <script>
+                                alertify
+                                    .alert("This is an alert dialog.", function() {
+                                        alertify.message('OK');
+                                    });
+                            </script>
                         <?php endif; ?>
+
+                        <script>
+                            alertify.alert('Ready!');
+                        </script>
+
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -65,9 +75,15 @@
                                                 <td><?= $product['product_name']; ?>
                                                 </td>
                                                 <td class="text-right"><?= $product['product_price']; ?></td>
-                                                <td class="text-center">
+                                                <td class="d-flex justify-content-center">
                                                     <a href="<?= site_url("products/edit/" . $product['id']) ?>" class="btn btn-info">Edit</a>
-                                                    <a href="<?= site_url("products/delete/" . $product['id']) ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete?')">Delete</a>
+                                                    <!-- delete -->
+                                                    <form method="post" action="<?= site_url("products/delete/" . $product['id']) ?>">
+                                                        <?= csrf_field() ?>
+                                                        <button class="btn btn-danger" onclick="return confirm('Are you sure you want to delete?')" type="submit">Delete</button>
+                                                        <!-- delete -->
+                                                    </form>
+
                                                     <a href="" class="btn btn-primary">Show</a>
                                                 </td>
                                             </tr>
