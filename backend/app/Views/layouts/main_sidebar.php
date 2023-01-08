@@ -91,10 +91,43 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-user-circle"></i>
                         <p>
+                            Reports
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="<?= base_url('reports/report1')  ?>" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Report 1</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= base_url('reports/report2')  ?>" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Report 2</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= base_url('reports/stafflist')  ?>" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Office Wise Staff List</p>
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-user-circle"></i>
+                        <p>
                             Users
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
+
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="<?= base_url('products')  ?>" class="nav-link">

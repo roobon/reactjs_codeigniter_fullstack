@@ -38,6 +38,11 @@ $routes->setAutoRoute(false);
 $routes->get('/test', 'TestController::index');
 $routes->get('/test/list', 'TestController::productList');
 
+$routes->get('/reports/stafflist', 'ReportController::stafflist', ['filter' => 'authGuard']);
+$routes->get('/reports/allstaff', 'ReportController::allstaff', ['filter' => 'authGuard']);
+$routes->get('/reports/orderlist', 'ReportController::orderlist', ['filter' => 'authGuard']);
+$routes->get('/reports/orderquery', 'ReportController::orderQuery', ['filter' => 'authGuard']);
+
 $routes->get('/admin', 'Dashboard::index', ['filter' => 'authGuard']);
 $routes->presenter('products', ['filter' => 'authGuard']);
 $routes->get('/admin/category', 'CategoryController::index', ['filter' => 'authGuard']);
